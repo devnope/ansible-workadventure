@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  gather_facts: smart
+  become: true
+  vars:
+    workadventure_domain: "workadventure.localhost"
+    workadventure_start_room: "/_/global/raw.githubusercontent.com/raumzeitlabor/rc3-map-lounge/main/main.json"
+    jitsi_url: "meet.jit.si"
+    jitsi_private_mode: false
+    ansible_become_pass: "{{ local_become_pass }}"
+  tasks:
+
+    - include_role:
+        name: user_setup
+      loop:
+        - "{{ users.tom }}"
+
+    - include_role:
+        name: generic_setup
+
+    - include_role:
+        name: security
+
+    - include_role:
+        name: docker_setup
+
+    - include_role:
+        name: workadventure_setup
+
