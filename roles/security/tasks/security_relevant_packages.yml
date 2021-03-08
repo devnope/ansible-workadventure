@@ -1,0 +1,92 @@
+---
+- name: "Ensure X Window System is not installed"
+  package:
+    name: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "@X Window System"
+    - "x11*"
+
+- name: "load facts"
+  setup:
+    filter: ansible_facts.packages
+
+- name: "Remove hfs module"
+  modprobe:
+    name: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "freevxfs"
+    - "jffs2"
+    - "hfs"
+    - "hfsplus"
+    - "udf"
+
+- name: "install stuff"
+  package:
+    package: "*"
+    state: "latest"
+
+- name: "install stuff"
+  package:
+    package: "{{ item }}"
+    state: "present"
+    install_recommends: false
+  loop:
+    - "aide"
+    - "aide-common"
+    - "apt-listbugs"
+    - "apt-listchanges"
+    - "apt-listchanges"
+    - "apt-transport-https"
+    - "auditd"
+    - "bsd-mailx"
+    - "checksecurity"
+    - "debsecan"
+    - "debsums"
+    - "fail2ban"
+    - "hardening-runtime"
+    - "haveged"
+    - "iptables"
+    - "jitterentropy-rngd"
+    - "libpam-cracklib"
+    - "libpam-pwquality"
+    - "libpam-tmpdir"
+    - "logwatch"
+    - "lynis"
+    - "needrestart"
+    - "python3-cracklib"
+    - "python3-pip"
+    - "python3-selinux"
+    - "rkhunter"
+    - "selinux-basics"
+    - "selinux-policy-default"
+    - "selinux-utils"
+    - "sysstat"
+    - "ufw"
+    - "unattended-upgrades"
+
+- name: "Stat AIDE DB"
+  stat:
+    path: /var/lib/aide/aide.db
+  register: aide_db
+
+- name: "Init AIDE | This may take a LONG time"
+  command: /usr/sbin/aideinit
+  args:
+    creates: /var/lib/aide/aide.db
+  when:
+    - not aide_db.stat.exists
+
+- name: "Check if {{ item }} is installed"
+  package_facts:
+
+- include_tasks: stop_services.yml
+  loop:
+    - avahi-daemon
+    - cups
+    - slapd
+    - rpcbind
+    - named
+    - rsync
+    - exim4

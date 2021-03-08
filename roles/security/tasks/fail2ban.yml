@@ -1,0 +1,9 @@
+---
+
+- name: "send fail2ban jail.local"
+  copy:
+    src: "jail.local"
+    dest: "/etc/fail2ban/jail.local"
+    mode: "0740"
+    owner: "root"
+    group: "root"

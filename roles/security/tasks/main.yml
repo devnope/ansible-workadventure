@@ -1,0 +1,12 @@
+---
+
+- include_tasks: "auditd.yml"
+- include_tasks: "disable_modules.yml"
+- include_tasks: "fail2ban.yml"
+- include_tasks: "modify_access_configs.yml"
+- include_tasks: "security_relevant_packages.yml"
+- include_tasks: "selinux.yml"
+- include_tasks: "set_file_permissions.yml"
+- include_tasks: "set_sys_settings.yml"
+- include_tasks: "setup_lynis.yml"
+- include_tasks: "ufw.yml"

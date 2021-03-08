@@ -1,0 +1,24 @@
+---
+
+- name: "disable translation packages"
+  lineinfile:
+    dest: "/etc/apt/apt.conf.d/99disable-translations"
+    line: "Acquire::Languages \"none\";"
+
+- name: "load apt key"
+  apt_key:
+    url: "https://packages.cisofy.com/keys/cisofy-software-public.key"
+    keyring: "/etc/apt/trusted.gpg.d/debian.gpg"
+
+- name: "Add specified repository into sources list"
+  apt_repository:
+    repo: "deb https://packages.cisofy.com/community/lynis/deb/ stable main"
+    state: "present"
+
+- name: "Install Lynis from apt"
+  package:
+    name: "apt-transport-https"
+    state: "present"
+    force: true
+    install_recommends: false
+    update_cache: true

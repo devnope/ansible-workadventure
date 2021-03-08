@@ -1,0 +1,43 @@
+---
+- name: "Ensure audit log storage size is configured"
+  lineinfile:
+      dest: "/etc/audit/auditd.conf"
+      regexp: "^max_log_file( |=)"
+      line: "max_log_file = 10"
+      state: present
+  notify:
+      - restart auditd
+
+- name: "Ensure auditd service is enabled"
+  service:
+      name: "auditd"
+      state: "started"
+      enabled: true
+
+- name: "Ensure auditing for processes that start prior to auditd is enabled"
+  replace:
+      dest: "/etc/default/grub"
+      regexp: '(^GRUB_CMDLINE_LINUX\s*\=\s*)(?:")(.+)(?<!audit=1)(?:")'
+      replace: '\1"\2 audit=1"'
+      follow: true
+  ignore_errors: true
+  notify:
+      - generate new grub config
+
+- name: "send audit.rules"
+  copy:
+    src: "audit.rules"
+    dest: "/etc/audit/rules.d/local.rules"
+    mode: "0740"
+    owner: root
+    group: root
+
+- name: "send auditd.conf"
+  copy:
+    src: "auditd.conf"
+    dest: "/etc/audit/auditd.conf"
+    mode: "0740"
+    owner: "root"
+    group: "root"
+  notify:
+      - restart auditd

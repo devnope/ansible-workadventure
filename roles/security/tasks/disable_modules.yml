@@ -1,0 +1,31 @@
+---
+
+- name: "Ensure DCCP is disabled"
+  modprobe:
+   name: "dccp"
+   state: "absent"
+
+- name: "Ensure sctp is disabled"
+  modprobe:
+   name: "sctp"
+   state: "absent"
+
+- name: "Ensure RDS is disabled"
+  modprobe:
+   name: "rds"
+   state: "absent"
+
+- name: "Ensure TIPC is disabled"
+  modprobe:
+   name: "tipc"
+   state: "absent"
+
+- name: "Ensure TIPC is disabled"
+  modprobe:
+   name: "tipc"
+   state: "absent"
+
+- name: "Ensure OHCI is disabled"
+  modprobe:
+   name: "ohci"
+   state: "absent"

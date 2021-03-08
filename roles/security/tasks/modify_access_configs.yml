@@ -1,0 +1,30 @@
+---
+
+- name: "Ensure permissions on /etc/ssh/sshd_config are configured"
+  template:
+    src: "sshd_config.j2"
+    dest: "/etc/ssh/sshd_config"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+    validate: "/usr/sbin/sshd -t -f %s"
+    backup: "yes"
+
+- name: "Ensure password hashing algorithm is SHA-512"
+  command: "authconfig --passalgo=sha512 --update"
+  changed_when: false
+  failed_when: false
+
+ - name: "Ensure access to the su command is restricted"
+   replace:
+     dest: "/etc/pam.d/su"
+     regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
+     replace: "auth       required    pam_wheel.so use_uid"
+
+ - name: "Ensure access to the su command is restricted - sudo group contains root"
+   user:
+     name: "{{ item }}"
+     groups: "sudo"
+   with_items:
+     - "root"
+     - "tom"

@@ -1,0 +1,25 @@
+---
+- name: "Ensure existence of operator group"
+  group:
+    name: "operator"
+    state: "present"
+
+- name: "Adding User {{ item.username }}"
+  user:
+    name: "{{ item.username }}"
+    create_home: yes
+    comment: "automaticly added user"
+    password: "{{ 'item.pass' | password_hash('sha512') }}"
+    shell: "{{ item.shell }}"
+    update_password: "on_create"
+    append: yes
+    groups:
+      - "ssh"
+      - "sudo"
+      - "operator"
+
+- name: "Set authorized key taken from vault"
+  authorized_key:
+    user: "{{ item.username }}"
+    state: "present"
+    key: "{{ item.pubkey }}"

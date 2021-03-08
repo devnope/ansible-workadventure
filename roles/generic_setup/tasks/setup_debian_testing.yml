@@ -1,0 +1,20 @@
+---
+
+- name: "Add security.debian.org  repository into sources list using specified filename"
+  apt_repository:
+    repo: "deb {{ item.repo }} {{ item.subdir }} main contrib non-free"
+    state: "present"
+    filename: "debian-testing"
+  loop:
+    - repo: "http://deb.debian.org/debian/"
+      subdir: "testing-updates"
+    - repo: "http://security.debian.org/"
+      subdir: "testing-security"
+
+- name: "Update all"
+  package:
+    name: "*"
+    state: "latest"
+
+- debug:
+    msg: "Please reboot to utilize all new packages"

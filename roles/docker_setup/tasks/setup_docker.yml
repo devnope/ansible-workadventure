@@ -1,0 +1,57 @@
+---
+
+- name: "ensure a techuser is present"
+  user:
+    name: "techuser"
+    shell: "/bin/false"
+    state: "present"
+    groups:
+      - "docker"
+
+- name: "Add Apt signing key from official docker repo"
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    state: "present"
+  when: ansible_distribution == "Debian"
+
+- name: "add docker official repository for Debian Stretch"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+    state: "present"
+  when: ansible_distribution == "Debian"
+
+- name: "Index new repo into the cache"
+  package:
+    name: "*"
+    state: "latest"
+    update_cache: "yes"
+
+- name: "set namespace size"
+  sysctl:
+      name: 'user.max_user_namespaces'
+      value: '15000'
+      sysctl_set: true
+      state: "present"
+      reload: true
+
+- name: "actually install docker"
+  package:
+    name: "docker-ce"
+    state: "latest"
+
+- name: "config daemon config for docker"
+  template:
+    src: "daemon.json.j2"
+    dest: "/etc/docker/daemon.json"
+    backup: true
+
+- name: "set permissions on docker.sock"
+  file:
+    path: "/run/docker.sock"
+    group: "docker"
+    mode: "0660"
+
+- name: "restart docker"
+  service:
+    name: "docker"
+    state: "restarted"

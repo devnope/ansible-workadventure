@@ -1,0 +1,47 @@
+---
+
+- name: "Ensure default user umask is 027 or more restrictive"
+  block:
+    - name: "Check if bashrc exists"
+      file:
+        path: "/etc/bashrc"
+        state: "touch"
+        mode: "0644"
+
+    - name: "Ensure default user umask is 027 or more restrictive - /etc/bashrc"
+      replace:
+        path: "/etc/bashrc"
+        regexp: '(^\s+umask) 002'
+        replace: '\1 027'
+
+    - name: "Ensure default user umask is 027 or more restrictive - /etc/profile"
+      replace:
+        path: "/etc/profile"
+        regexp: '(^\s+umask) 002'
+        replace: '\1 027'
+
+- name: "Ensure permissions on bootloader config are configured"
+  file:
+    path: "/boot/grub/grub.cfg"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+  when:
+    - ansible_os_family == "Debian"
+
+- name: "Ensure permissions on /etc/motd are configured"
+  file:
+    dest: "/etc/motd"
+    state: "file"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: "Ensure permissions on /etc/issue are configured"
+  file:
+    dest: "/etc/issue"
+    state: "file"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+

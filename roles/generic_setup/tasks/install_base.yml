@@ -1,0 +1,38 @@
+---
+
+- name: "load facts"
+  setup:
+    filter: ansible_facts.packages
+
+- name: "install stuff"
+  package:
+    package: "*"
+    state: "latest"
+
+- name: "install stuff"
+  package:
+    package: "{{ item }}"
+    state: "present"
+  loop:
+    - aptitude
+    - vim
+    - tmux
+    - inxi
+    - htop
+    - zstd
+    - lz4
+    - coreutils
+    - xz-utils
+    - moreutils
+    - haveged
+    - apt-transport-https
+    - apt-listchanges
+    - needrestart
+    - git
+    - python3-pip
+    - sysstat
+    - python3-selinux
+    - seccomp
+    - python3-seccomp
+    - selinux-policy-default
+    - zsh

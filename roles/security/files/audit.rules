@@ -1,0 +1,18 @@
+# Audit Copy, Move, Delete & Create file commands
+-a exit,always -F arch=b64 -S execve -F path=/bin/cp -k Copy
+-a exit,always -F arch=b64 -S execve -F path=/bin/mv -k Move_Rename
+-a exit,always -F arch=b64 -S execve -F path=/bin/rm -k Delete
+-a exit,always -F arch=b64 -S execve -F path=/bin/vi -k Create_Edit_View_File
+
+# Audit shutdown & Reboot command
+-a exit,always -F arch=b64 -S execve -F path=/sbin/reboot -k Reboot
+-a exit,always -F arch=b64 -S execve -F path=/sbin/init -k Reboot
+-a exit,always -F arch=b64 -S execve -F path=/sbin/poweroff -k Reboot
+-a exit,always -F arch=b64 -S execve -F path=/sbin/shutdown -k Reboot
+
+# # Audit mount unmount commands
+-a exit,always -F arch=b64 -S execve -F path=/bin/mount -k mount_device
+-a exit,always -F arch=b64 -S execve -F path=/bin/umount -k unmount_device
+
+# # Kill Process
+-a exit,always -F arch=b64 -S kill -k Kill_Process
