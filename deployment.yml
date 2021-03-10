@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: smart
+  gather_facts: true
   become: true
   vars:
     workadventure_domain: "workadventure.localhost"
