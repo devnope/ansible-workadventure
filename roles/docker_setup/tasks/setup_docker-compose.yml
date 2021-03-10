@@ -7,8 +7,11 @@
 
 - name: "Install python3-pip"
   package:
-    name: "{{ pip_package_name }}"
+    name: "{{ item }}"
     state: "latest"
+  loop:
+    - "python3-setuptools"
+    - "{{ pip_package_name }}"
 
 - name: "Install docker-compose via pip"
   pip:

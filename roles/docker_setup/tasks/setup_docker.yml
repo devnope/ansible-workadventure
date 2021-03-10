@@ -1,4 +1,8 @@
 ---
+- name: "ensure group docker is present"
+  group:
+    name: "docker"
+    state: "present"
 
 - name: "ensure a techuser is present"
   user:
