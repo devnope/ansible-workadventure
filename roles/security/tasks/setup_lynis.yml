@@ -4,6 +4,8 @@
   lineinfile:
     dest: "/etc/apt/apt.conf.d/99disable-translations"
     line: "Acquire::Languages \"none\";"
+    create: "yes"
+    state: "present"
 
 - name: "load apt key"
   apt_key:
