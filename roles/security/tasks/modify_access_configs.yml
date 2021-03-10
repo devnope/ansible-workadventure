@@ -15,16 +15,16 @@
   changed_when: false
   failed_when: false
 
- - name: "Ensure access to the su command is restricted"
-   replace:
-     dest: "/etc/pam.d/su"
-     regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
-     replace: "auth       required    pam_wheel.so use_uid"
+- name: "Ensure access to the su command is restricted"
+  replace:
+    dest: "/etc/pam.d/su"
+    regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
+    replace: "auth       required    pam_wheel.so use_uid"
 
- - name: "Ensure access to the su command is restricted - sudo group contains root"
-   user:
-     name: "{{ item }}"
-     groups: "sudo"
-   with_items:
-     - "root"
-     - "tom"
+- name: "Ensure access to the su command is restricted - sudo group contains root"
+  user:
+    name: "{{ item }}"
+    groups: "sudo"
+  with_items:
+    - "root"
+    - "tom"
