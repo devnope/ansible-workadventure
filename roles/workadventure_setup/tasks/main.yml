@@ -29,6 +29,16 @@
     group: "operator"
     mode: "0770"
 
+- name: "Create workadventure dir"
+  file:
+    path: "/opt/workadventure/contrib/docker/letsencrypt"
+    state: "directory"
+    owner: "techuser"
+    group: "docker"
+    recurse: true
+    mode: "0775"
+
+
 - name: "Conclusion"
   debug:
     msg: "Workadventure is prepared. Have a look in /opt/workadventure"
