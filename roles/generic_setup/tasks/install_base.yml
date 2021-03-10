@@ -15,24 +15,26 @@
     state: "present"
   loop:
     - aptitude
-    - vim
-    - tmux
-    - inxi
-    - htop
-    - zstd
-    - lz4
-    - coreutils
-    - xz-utils
-    - moreutils
-    - haveged
-    - apt-transport-https
     - apt-listchanges
-    - needrestart
+    - apt-transport-https
+    - auditd
+    - coreutils
+    - fail2ban
     - git
+    - haveged
+    - htop
+    - inxi
+    - lz4
+    - moreutils
+    - needrestart
     - python3-pip
-    - sysstat
+    - python3-seccomp
     - python3-selinux
     - seccomp
-    - python3-seccomp
     - selinux-policy-default
+    - sysstat
+    - tmux
+    - vim
+    - xz-utils
     - zsh
+    - zstd
