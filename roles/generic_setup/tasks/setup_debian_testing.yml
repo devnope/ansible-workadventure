@@ -7,6 +7,8 @@
     filename: "debian-testing"
   loop:
     - repo: "http://deb.debian.org/debian/"
+      subdir: "testing"
+    - repo: "http://deb.debian.org/debian/"
       subdir: "testing-updates"
     - repo: "http://security.debian.org/"
       subdir: "testing-security"
@@ -15,6 +17,7 @@
   package:
     name: "*"
     state: "latest"
+    force: "true"
 
 - debug:
     msg: "Please reboot to utilize all new packages"
