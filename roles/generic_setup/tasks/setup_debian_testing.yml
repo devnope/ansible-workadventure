@@ -1,6 +1,6 @@
 ---
 
-- name: "Add security.debian.org  repository into sources list using specified filename"
+- name: "Add repositories into sources list using specified filename"
   apt_repository:
     repo: "deb {{ item.repo }} {{ item.subdir }} main contrib non-free"
     state: "present"
