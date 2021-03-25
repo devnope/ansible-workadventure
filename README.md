@@ -49,7 +49,7 @@ cd /opt/workadventure/contrib/docker
 docker-compose up -d
 ```
 
-access play.workadventure.<domain> in your Browser
+access `https://play.workadventure.<domain>` in your Browser
 
 
 
