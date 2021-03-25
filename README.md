@@ -11,7 +11,7 @@ Let's assume, you have the cheapest VPS Instance from Hetzner.
 
 ## Preparation
 
-You can then use the `cloud-init` File as a Kickstarter for your server. 
+You can then use the `user-data` functionality of Cloud-Init as a Kickstarter for your server. 
 
 This prepares you to have a basically working server to which you can logon via ssh with your private key. 
 After that you can use git to pull this repository and install Ansible.
@@ -26,9 +26,6 @@ After you filled in the Vault-File, fill in your specific data inside the `deplo
 
 ## ToDos for this Repo:
 
-* provide cloud-init
 * provide ansible-vault template
 * provide more content for fail2ban
-* set zstd to default logrotate Compressor - because ... I can
 * improve UFW
-* verify/improve Reboot Ѕafety
