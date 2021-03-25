@@ -20,9 +20,9 @@ Then you should create a Vault-File for Ansible. An example is provided in "vaul
 
 After you filled in the Vault-File, fill in your specific data inside the `deployment.yml`.
 ```
-    workadventure_domain: "workadventure.<domain>"
-    workadventure_start_room: "/_/global/raw.githubusercontent.com/raumzeitlabor/rc3-map-lounge/main/main.json"
-    jitsi_url: "<jitsii-server>"
+workadventure_domain: "workadventure.<domain>"
+workadventure_start_room: "/_/global/raw.githubusercontent.com/raumzeitlabor/rc3-map-lounge/main/main.json"
+jitsi_url: "<jitsii-server>"
 ```
 ## Execution
 
