@@ -27,6 +27,7 @@
     - lz4
     - moreutils
     - needrestart
+    - earlyoom
     - python3-pip
     - python3-seccomp
     - python3-selinux
