@@ -1,8 +1,8 @@
 ---
 - name: "Put ansible on hold to prevent it auto-upgrading itself"
-  command: "sudo apt-mark hold ansible"
+  command: "apt-mark hold ansible"
 - include_tasks: install_base.yml
 - include_tasks: setup_debian_testing.yml
   when: ansible_distribution == 'Debian'
 - name: "Lift hold on ansible"
-  command: "sudo apt-mark unhold ansible"
+  command: "apt-mark unhold ansible"
