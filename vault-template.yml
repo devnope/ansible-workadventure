@@ -1,12 +1,12 @@
 ---
 users:
   <your-user>:
-  username: "<your-user"
-  pass: "<passphrase-for-your-user-just-to-be-safe>"
+    username: "<your-user"
+    pass: "<passphrase-for-your-user-just-to-be-safe>"
     shell: "/usr/bin/bash"
     pubkey: "<your-ssh-pubkey>"
 
-    local_become_pass: "set-your-password-here-so-you-do-not-have-to-interactively-enter-it"
+local_become_pass: "set-your-password-here-so-you-do-not-have-to-interactively-enter-it"
 
 letsencrypt:
   mail: "your-mail-address-for-letsencrypt-usage"
