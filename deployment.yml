@@ -13,7 +13,7 @@
     - include_role:
         name: user_setup
       loop:
-        - "{{ users.tom }}"
+        - "{{ users.<your-user> }}"
 
     - include_role:
         name: generic_setup
