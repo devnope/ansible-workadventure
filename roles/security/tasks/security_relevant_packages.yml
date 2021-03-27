@@ -76,7 +76,7 @@
   when:
     - not aide_db.stat.exists
 
-- name: "Check if {{ item }} is installed"
+- name: "get installed packages"
   package_facts:
 
 - include_tasks: stop_services.yml
