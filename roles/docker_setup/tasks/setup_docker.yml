@@ -4,13 +4,21 @@
     name: "docker"
     state: "present"
 
-- name: "ensure a techuser is present"
-  user:
-    name: "techuser"
-    shell: "/bin/false"
+- name: "install cgroup packages"
+  package:
+    name: "{{ item }}"
     state: "present"
-    groups:
-      - "docker"
+  loop:
+    - cgroup-bin
+    - cgroup-tools
+    - cgroupfs-mount
+    - libcgroup-dev
+
+- name: "set cgroup grub option"
+  replace:
+    path: "/etc/default/grub"
+    regexp: 'GRUB_CMDLINE_LINUX=""'
+    replace: 'GRUB_CMDLINE_LINUX="quiet cgroup_enable=memory systemd.unified_cgroup_hierarchy=0"'
 
 - name: "Add Apt signing key from official docker repo"
   apt_key:
