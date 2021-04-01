@@ -31,6 +31,8 @@ jitsi_url: "<jitsii-server>"
 ansible-playbook deployment.yml -e @global_vars/user_sec.vault.yml --ask-vault-pass
 ```
 
+**Reboot is necessary**
+
 ### Setup DNS:
 This depends on your Domain Provider but the Following should help you:
 ```
