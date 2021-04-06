@@ -5,9 +5,9 @@
     filter: ansible_facts.packages
 
 - name: "install stuff"
-  package:
-    package: "*"
-    state: "latest"
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: "install stuff"
   package:

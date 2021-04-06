@@ -18,6 +18,7 @@
     name: "*"
     state: "latest"
     force: "true"
+  when: not skip_full_upgrade
 
 - debug:
     msg: "Please reboot to utilize all new packages"
