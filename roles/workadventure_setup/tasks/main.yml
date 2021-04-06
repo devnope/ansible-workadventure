@@ -8,7 +8,6 @@
   file:
     path: "/opt/workadventure"
     state: "directory"
-    owner: "techuser"
     group: "docker"
     recurse: true
     mode: "0775"
@@ -17,7 +16,6 @@
   template:
     src: "env.j2"
     dest: "/opt/workadventure/contrib/docker/.env"
-    owner: "techuser"
     group: "operator"
     mode: "0770"
 
@@ -25,7 +23,6 @@
   template:
     src: "docker-compose.yml.j2"
     dest: "/opt/workadventure/contrib/docker/docker-compose.yml"
-    owner: "techuser"
     group: "operator"
     mode: "0770"
 
@@ -33,7 +30,6 @@
   file:
     path: "/opt/workadventure/contrib/docker/letsencrypt"
     state: "directory"
-    owner: "techuser"
     group: "docker"
     recurse: true
     mode: "0775"
