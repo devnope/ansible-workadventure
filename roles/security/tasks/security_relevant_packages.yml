@@ -63,17 +63,10 @@
     - "sysstat"
     - "ufw"
 
-- name: "Stat AIDE DB"
-  stat:
-    path: /var/lib/aide/aide.db
-  register: aide_db
-
 - name: "Init AIDE | This may take a LONG time"
   command: /usr/sbin/aideinit
   args:
     creates: /var/lib/aide/aide.db
-  when:
-    - not aide_db.stat.exists
 
 - name: "get installed packages"
   package_facts:

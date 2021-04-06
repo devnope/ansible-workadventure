@@ -8,7 +8,7 @@
 - name: "update sysctl forward ip"
   sysctl:
     name: "{{ item }}"
-    value: 1
+    value: "1"
     sysctl_set: yes
   loop:
     - "net.ipv4.ip_forward"

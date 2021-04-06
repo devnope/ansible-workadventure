@@ -4,11 +4,11 @@
   setup:
     filter: ansible_facts.packages
 
-- name: "install stuff"
+- name: "refresh cache"
   apt:
-    upgrade: yes
-    update_cache: yes
-    autoremove: yes
+    upgrade: True
+    update_cache: True
+    autoremove: True
 
 - name: "install stuff"
   package:
