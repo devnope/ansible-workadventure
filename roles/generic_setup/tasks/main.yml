@@ -1,4 +1,4 @@
 ---
 - include_tasks: install_base.yml
 - include_tasks: setup_debian_testing.yml
-  when: ansible_distribution == 'Debian'
+  when: ansible_distribution is 'Debian'
