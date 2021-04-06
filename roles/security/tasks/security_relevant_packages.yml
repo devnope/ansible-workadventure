@@ -26,6 +26,7 @@
   package:
     package: "*"
     state: "latest"
+  when: not skip_full_upgrade
 
 - name: "install stuff"
   package:
