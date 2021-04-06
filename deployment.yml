@@ -17,13 +17,21 @@
 
     - include_role:
         name: generic_setup
+      tags:
+        - packages
 
     - include_role:
         name: security
+      tags:
+        - security
 
     - include_role:
         name: docker_setup
+      tags:
+        - packages
 
     - include_role:
         name: workadventure_setup
+      tags:
+        - product
 

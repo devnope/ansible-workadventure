@@ -4,16 +4,12 @@
     name: "operator"
     state: "present"
 
-- name: "Generate encrypted password"
-  command: "mkpasswd --method=SHA-512 {{ 'item.pass' }}"
-  register: encrypted_user_password
-
 - name: "Adding User {{ item.username }}"
   user:
     name: "{{ item.username }}"
     create_home: yes
     comment: "automaticly added user"
-    password: "{{ encrypted_user_password }}"
+    password: "{{ item.pass | password_hash('sha512') }}"
     shell: "{{ item.shell }}"
     update_password: "on_create"
     append: yes
