@@ -34,8 +34,6 @@
     state: "present"
     install_recommends: false
   loop:
-    - "aide"
-    - "aide-common"
     - "apt-listchanges"
     - "apt-transport-https"
     - "auditd"
@@ -62,11 +60,6 @@
     - "selinux-utils"
     - "sysstat"
     - "ufw"
-
-- name: "Init AIDE | This may take a LONG time"
-  command: /usr/sbin/aideinit
-  args:
-    creates: /var/lib/aide/aide.db
 
 - name: "get installed packages"
   package_facts:
