@@ -6,7 +6,6 @@
 
 - name: "refresh cache"
   apt:
-    upgrade: True
     update_cache: True
     autoremove: True
 
