@@ -36,8 +36,6 @@
   loop:
     - "aide"
     - "aide-common"
-    - "apt-listbugs"
-    - "apt-listchanges"
     - "apt-listchanges"
     - "apt-transport-https"
     - "auditd"

@@ -8,6 +8,7 @@
   apt:
     upgrade: yes
     update_cache: yes
+    autoremove: yes
 
 - name: "install stuff"
   package:
@@ -28,7 +29,6 @@
     - moreutils
     - needrestart
     - earlyoom
-    - python3-cryptography
     - python3-pip
     - python3-seccomp
     - python3-selinux
