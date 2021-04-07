@@ -1,6 +1,6 @@
 ---
 
-- name: "stop services {{ item }}"
+- name: "stop services"
   service:
     name: "{{ item }}"
     state: "stopped"

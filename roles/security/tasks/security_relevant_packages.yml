@@ -31,7 +31,7 @@
 - name: "install stuff"
   package:
     package: "{{ item }}"
-    state: "present"
+    state: "latest"
     install_recommends: false
   loop:
     - "apt-listchanges"
@@ -61,9 +61,9 @@
     - "sysstat"
     - "ufw"
 
-- name: "get installed packages"
+- name: "get packages facts"
   package_facts:
-    manager: auto
+    manager: "auto"
 
 - include_tasks: stop_services.yml
   loop:
