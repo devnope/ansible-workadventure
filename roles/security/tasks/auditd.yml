@@ -1,4 +1,10 @@
 ---
+- name: "Ensure /etc/audit is present"
+  file:
+    state: "directory"
+    mode: "0744"
+    path: "/etc/audit"
+
 - name: "Ensure audit log storage size is configured"
   lineinfile:
       dest: "/etc/audit/auditd.conf"
