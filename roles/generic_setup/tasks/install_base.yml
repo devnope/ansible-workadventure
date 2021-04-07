@@ -17,7 +17,6 @@
     - aptitude
     - apt-listchanges
     - apt-transport-https
-    - auditd
     - coreutils
     - fail2ban
     - git
