@@ -4,6 +4,7 @@
   lineinfile:
     dest: "/etc/apt/apt.conf.d/99disable-translations"
     line: "Acquire::Languages \"none\";"
+    mode: "0644"
     create: "yes"
     state: "present"
 

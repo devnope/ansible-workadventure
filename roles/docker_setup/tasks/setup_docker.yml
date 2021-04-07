@@ -49,12 +49,13 @@
 - name: "actually install docker"
   package:
     name: "docker-ce"
-    state: "latest"
+    state: "present"
 
 - name: "config daemon config for docker"
   template:
     src: "daemon.json.j2"
     dest: "/etc/docker/daemon.json"
+    mode: "0744"
     backup: true
 
 - name: "set permissions on docker.sock"
