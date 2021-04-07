@@ -64,6 +64,10 @@
 - name: "get packages facts"
   package_facts:
     manager: "auto"
+  register: "result"
+  retries: "3"
+  delay: "10"
+  until: result is not failed
 
 - include_tasks: stop_services.yml
   loop:
