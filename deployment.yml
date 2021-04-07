@@ -6,8 +6,8 @@
     workadventure_domain: "workadventure.localhost"
     workadventure_start_room: "/_/global/raw.githubusercontent.com/raumzeitlabor/rc3-map-lounge/main/main.json"
     jitsi_url: "meet.jit.si"
-    jitsi_private_mode: false
-    skip_full_upgrade: true
+    jitsi_private_mode: False
+    skip_full_upgrade: True
     ansible_become_pass: "{{ local_become_pass }}"
   tasks:
 
