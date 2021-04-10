@@ -16,7 +16,7 @@ You can then use the `user-data` functionality of Cloud-Init as a Kickstarter fo
 This prepares you to have a basically working server to which you can logon via ssh with your private key. 
 After that you can use git to pull this repository and install Ansible.
 
-Then you should create a Vault-File for Ansible. An example is provided in "vault-template.yml".
+Then you should create a Vault-File for Ansible and name it "vars.vault.yml". An example is provided in "vault-template.yml".
 
 After you filled in the Vault-File, fill in your specific data inside the `deployment.yml`.
 ```
@@ -28,7 +28,7 @@ jitsi_url: "<jitsii-server>"
 
 ### Execute Ansible:
 ```
-ansible-playbook deployment.yml -e @global_vars/user_sec.vault.yml --ask-vault-pass
+ansible-playbook deployment.yml -e @vars.vault.yml --ask-vault-pass
 ```
 
 **Reboot is necessary**
