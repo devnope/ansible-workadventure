@@ -9,6 +9,9 @@
     jitsi_private_mode: False
     skip_full_upgrade: True
     ansible_become_pass: "{{ local_become_pass }}"
+    max_per_group: 5
+    max_username_lenght: 25
+    admin_api_token: "{{ ansible_fqdn | password_hash('sha512') | password_hash('sha512') }}"
   tasks:
 
     - include_role:
