@@ -29,7 +29,7 @@ services:
 
 
   front:
-    image: thecodingmachine/workadventure-front:master
+    image: thecodingmachine/workadventure-front:v1.3.10
     environment:
       DEBUG_MODE: "$DEBUG_MODE"
       JITSI_URL: $JITSI_URL
@@ -51,7 +51,7 @@ services:
     restart: unless-stopped
 
   pusher:
-    image: thecodingmachine/workadventure-pusher:master
+    image: thecodingmachine/workadventure-pusher:v1.3.10
     command: yarn run runprod
     environment:
       SECRET_JITSI_KEY: "$SECRET_JITSI_KEY"
@@ -71,7 +71,7 @@ services:
     restart: unless-stopped
 
   back:
-    image: thecodingmachine/workadventure-back:master
+    image: thecodingmachine/workadventure-back:v1.3.10
     command: yarn run runprod
     environment:
       SECRET_JITSI_KEY: "$SECRET_JITSI_KEY"
