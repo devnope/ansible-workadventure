@@ -41,6 +41,23 @@
   notify:
     - reload ufw
 
+- name: "enable turnserver"
+  ufw:
+    rule: "allow"
+    proto: tcp
+    port: 3478
+  notify:
+    - reload ufw
+
+- name: "enable turnserver"
+  ufw:
+    rule: "allow"
+    proto: udp
+    port: 3478
+  notify:
+    - reload ufw
+
+
 - name: "activate UFW"
   ufw:
     state: "enabled"

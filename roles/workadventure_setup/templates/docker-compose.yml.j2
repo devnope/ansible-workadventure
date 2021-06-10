@@ -89,3 +89,10 @@ services:
       - "traefik.http.routers.back-ssl.service=back"
       - "traefik.http.routers.back-ssl.tls.certresolver=myresolver"
     restart: unless-stopped
+
+  coturn:
+    image: coturn/coturn
+    volumes:
+      - ./coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+    network_mode: "host"
+

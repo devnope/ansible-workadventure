@@ -18,3 +18,11 @@ docker:
       key: ""
     jitsi:
       key: ""
+turn:
+  server: "turn:turn.serv.er"
+  user: "..."
+  password: "..."
+  realm: "turn.serv.er"
+  ip: "x.x.x.x"
+  fqdn: "turn.serv.er"
+

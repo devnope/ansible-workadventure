@@ -3,13 +3,15 @@
   git:
     repo: "https://github.com/thecodingmachine/workadventure"
     dest: "/opt/workadventure"
+    depth: 1
+    version: master
+    force: yes
 
 - name: "Create workadventure dir"
   file:
     path: "/opt/workadventure"
     state: "directory"
     group: "docker"
-    recurse: true
     mode: "0775"
 
 - name: "supply .env file"
@@ -17,23 +19,35 @@
     src: "env.j2"
     dest: "/opt/workadventure/contrib/docker/.env"
     group: "operator"
-    mode: "0770"
+    mode: "0644"
 
 - name: "supply docker-compose file"
   template:
     src: "docker-compose.yml.j2"
     dest: "/opt/workadventure/contrib/docker/docker-compose.yml"
     group: "operator"
-    mode: "0770"
+    mode: "0640"
 
-- name: "Create workadventure dir"
+- name: "Create letsencrypt dir"
   file:
     path: "/opt/workadventure/contrib/docker/letsencrypt"
     state: "directory"
     group: "docker"
-    recurse: true
     mode: "0775"
 
+- name: "Create turnserver dir"
+  file:
+    path: "/opt/workadventure/contrib/docker/coturn"
+    state: "directory"
+    group: "docker"
+    mode: "0755"
+
+- name: "Create turnserver config"
+  template:
+    src: "turnserver.conf.j2"
+    dest: "/opt/workadventure/contrib/docker/coturn/turnserver.conf"
+    mode: "0644"
+    group: "operator"
 
 - name: "Conclusion"
   debug:
