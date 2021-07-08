@@ -29,7 +29,7 @@ services:
 
 
   front:
-    image: thecodingmachine/workadventure-front:v1.3.10
+    image: thecodingmachine/workadventure-front:v1.4.6
     environment:
       DEBUG_MODE: "$DEBUG_MODE"
       JITSI_URL: $JITSI_URL
@@ -39,6 +39,11 @@ services:
       TURN_USER: "${TURN_USER}"
       TURN_PASSWORD: "${TURN_PASSWORD}"
       START_ROOM_URL: "${START_ROOM_URL}"
+      NODE_ENV: "production"
+      DISABLE_NOTIFICATIONS: "$DISABLE_NOTIFICATIONS"
+      MAX_PER_GROUP: "${MAX_PER_GROUP}"
+      MAX_USERNAME_LENGTH: "${MAX_USERNAME_LENGTH}"
+      ANALYTICS_CODE_PATH: ""
     labels:
       - "traefik.http.routers.front.rule=Host(`play.${DOMAIN}`)"
       - "traefik.http.routers.front.entryPoints=web,traefik"
@@ -51,7 +56,7 @@ services:
     restart: unless-stopped
 
   pusher:
-    image: thecodingmachine/workadventure-pusher:v1.3.10
+    image: thecodingmachine/workadventure-pusher:v1.4.6
     command: yarn run runprod
     environment:
       SECRET_JITSI_KEY: "$SECRET_JITSI_KEY"
@@ -71,7 +76,7 @@ services:
     restart: unless-stopped
 
   back:
-    image: thecodingmachine/workadventure-back:v1.3.10
+    image: thecodingmachine/workadventure-back:v1.4.6
     command: yarn run runprod
     environment:
       SECRET_JITSI_KEY: "$SECRET_JITSI_KEY"
@@ -89,3 +94,35 @@ services:
       - "traefik.http.routers.back-ssl.service=back"
       - "traefik.http.routers.back-ssl.tls.certresolver=myresolver"
     restart: unless-stopped
+
+
+          #  messages:
+      #    #image: thecodingmachine/nodejs:14
+      #    image: thecodingmachine/workadventure-back-base:latest
+      #    environment:
+      #      #STARTUP_COMMAND_0: sudo apt-get install -y inotify-tools
+      #      STARTUP_COMMAND_1: yarn install
+      #      STARTUP_COMMAND_2: yarn run proto:watch
+      #    volumes:
+      #      - ../../messages:/usr/src/app
+      #      - ../../back:/usr/src/back
+      #      - ../../front:/usr/src/front
+      #      - ../../pusher:/usr/src/pusher
+      #
+      #  coturn:
+      #    image: coturn/coturn:4.5.2
+      #    command:
+      #      - turnserver
+      #      #- -c=/etc/coturn/turnserver.conf
+      #      - --log-file=stdout
+      #      - --external-ip=$$(detect-external-ip)
+      #      - --listening-port=3478
+      #      - --min-port=10000
+      #      - --max-port=10010
+      #      - --tls-listening-port=5349
+      #      - --listening-ip=0.0.0.0
+      #      - --realm=coturn.workadventure.${DOMAIN}
+      #      - --server-name=coturn.workadventure.${DOMAIN}
+      #      - --lt-cred-mech
+      #      - --user=${TURN_USER}:${TURN_PASSWORD}
+      #    network_mode: host
