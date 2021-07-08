@@ -38,6 +38,12 @@
     - "WWW"
     - "WWW secure"
     - "openSSH"
+    - "3478/tcp"
+    - "5349/tcp"
+    - "10000:10010/tcp"
+    - "3478/udp"
+    - "5349/udp"
+    - "10000:10010/udp"
   notify:
     - reload ufw
 
