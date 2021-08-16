@@ -18,6 +18,7 @@ docker:
       key: ""
     jitsi:
       key: ""
+
 turn:
   server: "turn:turn.serv.er"
   user: "..."

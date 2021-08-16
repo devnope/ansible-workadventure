@@ -12,6 +12,7 @@
     max_per_group: 5
     max_username_lenght: 25
     admin_api_token: "{{ ansible_fqdn | password_hash('sha512') | password_hash('sha512') }}"
+    admin_api_url: "admin.api.{{ workadventure_domain }}"
   tasks:
 
     - include_role:
