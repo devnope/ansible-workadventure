@@ -18,6 +18,12 @@ docker:
       key: ""
     jitsi:
       key: ""
-  coturn:
-    username: "workadventure"
-    pass: "passphrase-for-your-user-just-to-be-safe"
+
+turn:
+  server: "turn:turn.serv.er"
+  user: "..."
+  password: "..."
+  realm: "turn.serv.er"
+  ip: "x.x.x.x"
+  fqdn: "turn.serv.er"
+
