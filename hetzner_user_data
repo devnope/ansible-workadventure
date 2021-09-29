@@ -1,5 +1,5 @@
 #!/bin/bash
 DEBIAN_FRONTEND=noninteractive apt --assume-yes update
 #DEBIAN_FRONTEND=noninteractive apt --assume-yes full-upgrade
-DEBIAN_FRONTEND=noninteractive apt --assume-yes install git ansible vim
+DEBIAN_FRONTEND=noninteractive apt --assume-yes install git ansible vim gpg gpg-agent
 git clone https://github.com/devnope/ansible-workadventure /opt/ansible-workadventure
