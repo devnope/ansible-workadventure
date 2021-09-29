@@ -33,6 +33,7 @@ services:
     environment:
       DEBUG_MODE: "$DEBUG_MODE"
       JITSI_URL: $JITSI_URL
+      PUSHER_URL: pusher.${DOMAIN}
       JITSI_PRIVATE_MODE: "$JITSI_PRIVATE_MODE"
       API_URL: pusher.${DOMAIN}
       TURN_SERVER: "${TURN_SERVER}"
