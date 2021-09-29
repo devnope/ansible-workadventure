@@ -29,7 +29,7 @@
     line: 'DEFAULT_FORWARD_POLICY="DROP"'
   notify:
     - reload ufw
-
+    
 - name: "enable SSH/HTTP (always)"
   ufw:
     rule: "allow"
@@ -38,12 +38,30 @@
     - "WWW"
     - "WWW secure"
     - "openSSH"
-    - "3478/tcp"
-    - "5349/tcp"
-    - "10000:10010/tcp"
-    - "3478/udp"
-    - "5349/udp"
-    - "10000:10010/udp"
+  notify:
+    - reload ufw
+
+- name: "enable coturn (always)"
+  ufw:
+    rule: "allow"
+    port: "{{ item }}"
+    proto: "tcp"
+  loop:
+    - "3478"
+    - "5349"
+    - "10000:10010"
+  notify:
+    - reload ufw
+
+- name: "enable coturn (always)"
+  ufw:
+    rule: "allow"
+    port: "{{ item }}"
+    proto: "udp"
+  loop:
+    - "3478"
+    - "5349"
+    - "10000:10010"
   notify:
     - reload ufw
 
