@@ -1,5 +1,6 @@
 # FAQ
 
+
 Where is this playbook executed?
 
 - I assume to execute the playbook locally on the VM.

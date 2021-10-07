@@ -43,6 +43,7 @@ maps.workadventure 600 IN A <ip>
 play.workadventure 600 IN A <ip>
 pusher.workadventure 600 IN A <ip>
 uploader.workadventure 600 IN A <ip>
+coturn.workadventure 600 IN A <ip>
 ```
 
 ### Start Workadventure

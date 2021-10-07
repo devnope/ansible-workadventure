@@ -96,34 +96,8 @@ services:
       - "traefik.http.routers.back-ssl.tls.certresolver=myresolver"
     restart: unless-stopped
 
-
-          #  messages:
-      #    #image: thecodingmachine/nodejs:14
-      #    image: thecodingmachine/workadventure-back-base:latest
-      #    environment:
-      #      #STARTUP_COMMAND_0: sudo apt-get install -y inotify-tools
-      #      STARTUP_COMMAND_1: yarn install
-      #      STARTUP_COMMAND_2: yarn run proto:watch
-      #    volumes:
-      #      - ../../messages:/usr/src/app
-      #      - ../../back:/usr/src/back
-      #      - ../../front:/usr/src/front
-      #      - ../../pusher:/usr/src/pusher
-      #
-      #  coturn:
-      #    image: coturn/coturn:4.5.2
-      #    command:
-      #      - turnserver
-      #      #- -c=/etc/coturn/turnserver.conf
-      #      - --log-file=stdout
-      #      - --external-ip=$$(detect-external-ip)
-      #      - --listening-port=3478
-      #      - --min-port=10000
-      #      - --max-port=10010
-      #      - --tls-listening-port=5349
-      #      - --listening-ip=0.0.0.0
-      #      - --realm=coturn.workadventure.${DOMAIN}
-      #      - --server-name=coturn.workadventure.${DOMAIN}
-      #      - --lt-cred-mech
-      #      - --user=${TURN_USER}:${TURN_PASSWORD}
-      #    network_mode: host
+  coturn:
+    image: coturn/coturn
+    volumes:
+      - ./coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+    network_mode: "host"
